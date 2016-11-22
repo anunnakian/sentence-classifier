@@ -55,6 +55,20 @@ def sd(numbers):
     return math.sqrt(variance)
 
 
+""" Summarize Dataset """
+
+
+def summarize(data_set):
+    summaries = [(mean(attribute), sd(attribute)) for attribute in zip(*data_set)]
+    del summaries[-1]
+    return summaries
+
+    # Make a Prediction: Use the summaries of the dataset to generate a single prediction.
+    # Make Predictions: Generate predictions given a test dataset and a summarized training dataset.
+    # Evaluate Accuracy: Evaluate the accuracy of predictions made for a test dataset as the percentage correct out of all predictions made.
+    # Tie it Together: Use all of the code elements to present a complete and standalone implementation of the Naive Bayes algorithm.
+
+
 if __name__ == '__main__':
     filename = "./input.csv";
     ds = load_csv(filename)
