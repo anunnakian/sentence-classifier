@@ -63,10 +63,16 @@ def summarize(data_set):
     del summaries[-1]
     return summaries
 
-    # Make a Prediction: Use the summaries of the dataset to generate a single prediction.
-    # Make Predictions: Generate predictions given a test dataset and a summarized training dataset.
-    # Evaluate Accuracy: Evaluate the accuracy of predictions made for a test dataset as the percentage correct out of all predictions made.
-    # Tie it Together: Use all of the code elements to present a complete and standalone implementation of the Naive Bayes algorithm.
+
+""" Summarize Attributes By Class """
+
+
+def summarize_by_class(data_set):
+    separated = separate_by_class(data_set)
+    summaries = {}
+    for classValue, instances in separated.iteritems():
+        summaries[classValue] = summarize(instances)
+    return summaries
 
 
 if __name__ == '__main__':
@@ -78,5 +84,5 @@ if __name__ == '__main__':
     train, test = split_data_set(ds, splitRatio)
     print('Split {0} rows into train with : \n{1} and test with :\n{2}').format(len(ds), train, test)
 
-    separated = separate_by_class(ds)
-    print('Separated instances: {0}').format(separated)
+    separated = summarize_by_class(ds)
+    print('summarize_by_class : {0}').format(separated)
