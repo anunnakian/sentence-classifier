@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import csv
 import random
-
+import math
 
 """ Handle Data: Load the data from CSV file and split it into training and test datasets. """
 
@@ -24,14 +24,19 @@ def split_data_set(ds, split_ratio):
     return [train_set, copy]
 
 
-""" Summarize Data: summarize the properties in the training dataset so that we can calculate probabilities and make predictions. """
+""" Summarize Data: """
+
+" Separate Data By Class "
 
 
-
-    # Make a Prediction: Use the summaries of the dataset to generate a single prediction.
-    # Make Predictions: Generate predictions given a test dataset and a summarized training dataset.
-    # Evaluate Accuracy: Evaluate the accuracy of predictions made for a test dataset as the percentage correct out of all predictions made.
-    # Tie it Together: Use all of the code elements to present a complete and standalone implementation of the Naive Bayes algorithm.
+def separate_by_class(data_set):
+    separated = {}
+    for i in range(len(data_set)):
+        vector = data_set[i]
+        if vector[0] not in separated:
+            separated[vector[0]] = []
+        separated[vector[0]].append(vector)
+    return separated
 
 
 if __name__ == '__main__':
@@ -42,3 +47,6 @@ if __name__ == '__main__':
     splitRatio = 0.67
     train, test = split_data_set(ds, splitRatio)
     print('Split {0} rows into train with : \n{1} and test with :\n{2}').format(len(ds), train, test)
+
+    separated = separate_by_class(ds)
+    print('Separated instances: {0}').format(separated)
